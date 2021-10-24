@@ -1,0 +1,84 @@
+Nombres: Patricia Mato Miragaya (patricia.mato.miragaya@udc.es)
+	 Sara Qing Liébana Rodríguez (s.qing.liebana@udc.es)
+	 Lucía Docampo Rodríguez (lucia.docampo@udc.es)
+	 
+Grupo 3.1
+
+-----------------------------------------------------------------------------
+
+En esta práctica 1 estudiamos 2 algoritmos para realizar la suma de la subsecuencia máxima. A continuación, determinamos los tiempos de ejecución de cada uno de ellos. La unidad de tiempo utilizada son microsegundos(µs). En la tabla de tiempos se realizaron 7 mediciones para distintos valores de n.
+
+Características del ordenador portátil en el que se hizo la medición:
+- Sistema Operativo: Ubuntu 20.04.3 LTS (64 bits)
+- CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz
+- Memoria Ram: 32 GB
+- Espacio disco duro: 47 GB
+- Kernel: 5.11.0-36-generic
+
+- Compilador: 9.3.0
+
+
+  Tiempos de ejecucion sumaSubMax1
+
+      n	    t(n)      t(n)/n^1.8     t(n)/n^2     t(n)/n^2.2	
+
+(*)   500         314.248    0.00435639    0.00125699    0.00036269
+
+      1000        1188.000    0.00472951    0.00118800    0.00029841
+
+      2000        4983.000    0.00569688    0.00124575    0.00027241
+
+      4000       19947.000    0.00654892    0.00124669    0.00023733
+
+      8000       79130.000    0.00746069    0.00123641    0.00020490
+
+      16000      312643.000    0.00846511    0.00122126    0.00017619
+
+      32000     1251091.000    0.00972790    0.00122177    0.00015345
+ 
+			        n^1.8 es   n^2 es ajustada    n^2.2 es
+			      subestimada  Cte=0.001230981  sobreestimada
+
+(*) corresponde a un tiempo promedio de 10000 ejecuciones del algoritmo.
+n^1.8 es una cota ligeramente subestimada.
+n^2 es una cota ajustada;   Cte=0.001230981
+n^2.2 es una cota ligeramente sobrestimada.
+Como conclusión, t(n) = O(n^2).
+
+
+
+
+  Tiempos de ejecucion sumaSubMax2
+
+      n            t(n)      t(n)/n^0.8     t(n)/n       t(n)/n^1.2	
+
+(*)   500         1.21600    0.00842864    0.00243200    0.00070173    
+
+(*)  1000         2.79370    0.01112192    0.00279370    0.00070175    
+
+(*)  2000         5.50710    0.01259212    0.00275355    0.00060213    
+
+(*)  4000        10.32070    0.01355380    0.00258018    0.00049118    
+
+(*)  8000        21.26640    0.01604065    0.00265830    0.00044054    
+
+(*) 16000        39.04140    0.01691334    0.00244009    0.00035203    
+
+(*) 32000        81.55990    0.02029349    0.00254875    0.00032011    
+
+                              n^0.8 es    n es ajustada    n^1.2 es
+                            subestimada  Cte=0.002600939  sobreestimada
+  
+(*) Tiempo promedio de 10000 ejecuciones del algoritmo.
+n^0.8 es una cota ligeramente subestimada.
+n es una cota ajustada;   Cte=0.002600939
+n^1.2 es una cota ligeramente sobrestimada.
+Como conclusión, t(n) = O(n).                  
+                          
+
+Repetimos las mediciones varias veces para elegir las mejores series.
+
+
+En conclusión, después de realizar los dos algoritmos y comprobar las tablas de tiempos, podemos observar que el segundo algoritmo (sumaSubMax2) es el más eficiente, ya que tiene tiempos de ejecución menores. 
+
+

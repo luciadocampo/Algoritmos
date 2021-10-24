@@ -1,0 +1,178 @@
+
+Nombres: Patricia Mato Miragaya (patricia.mato.miragaya@udc.es) 
+	 Sara Qing Liébana Rodríguez (s.qing.liebana@udc.es) 
+         Lucía Docampo Rodríguez (lucia.docampo@udc.es) 
+	
+Grupo 3.1 
+
+----------------------------------------------------------------------------- 
+
+En esta práctica 2 estudiaremos el comportamiento de 2 algoritmos de ordenación, ordenación por selección y ordenación shell. Nuestro objetivo será verificar la complejidad empírica de ambos. Para ello estudiaremos los tiempos de ejecución de cada algoritmo en tres casos diferentes, primero utilizando vectores generados aleatoriamente, a continuación descendentemente y por último ascendentemente. La unidad de tiempo utilizada son microsegundos (µs). En la tabla de tiempos se realizaron 7 mediciones para distintos valores de n, desde n=500 hasta n=32000, siguiendo una progresión geométrica de razón 2. 
+
+ 
+Características del ordenador portátil en el que se hizo la medición: 
+- Sistema Operativo: Ubuntu 20.04.3 LTS (64 bits) 
+- CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz 
+- Memoria Ram: 32 GB 
+- Espacio disco duro: 47 GB 
+- Kernel: 5.11.0-36-generic 
+
+- Compilador: 9.3.0 
+ 
+
+
+Para calcular la complejidad de cada algoritmo medimos los tiempos de ejecución con los distintos vectores mencionados anteriormente. Para los tiempos que no superan el umbral de confianza (ti>=500 µs) repetimos la ejecución 1000 veces y determinamos la media de ellas, además, estos tiempos están marcados con un asterisco (*). 
+
+ 
+
+
+En relación al algoritmo de ordenación por selección, para ordenar un vector de n términos tiene que realizar siempre el mismo número de comparaciones, sin importar el orden de los vectores, es decir, este algoritmo no depende del orden de los términos si no de la cantidad. Por lo tanto, tendrá una complejidad constante, y no será necesario estudiar el caso medio, peor y mejor. 
+
+
+ Ordenación por selección con inicialización aleatoria
+
+	    n		 t(n)      t(n)/n^1.8    t(n)/n^2.0    t(n)/n^2.2 
+
+(*)	   500         327.585    0.00454128    0.00131034    0.00037809 
+	  1000        1209.000    0.00481312    0.00120900    0.00030369 
+	  2000        4491.000    0.00513439    0.00112275    0.00024551 
+	  4000       22331.000    0.00733163    0.00139569    0.00026569 
+	  8000       79146.000    0.00746221    0.00123666    0.00020494 
+	 16000      310882.000    0.00841744    0.00121438    0.00017520 
+	 32000     1198324.000    0.00931761    0.00117024    0.00014698 
+
+                                  n^1.8 es       n^2.0 es      n^2.2 es 
+                                 subestimada     ajustada    sobreestimada 
+                                 
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+n^1.8 es una cota ligeramente subestimada. 
+n^2 es una cota ajustada;   Cte = 0.00121
+n^2.2 es una cota ligeramente sobrestimada. 
+Como conclusión, t(n) = O(n^2). 
+
+** En la ordenación por selección con inicialización aleatoria tuvimos que repetir la medición 2 veces, ya que la primera tabla de cada ejecución mostraba valores incorrectos en las dos primeras columnas de cotas (subestimada y ajustada). Para solucionar este problema, repetimos varias veces la ejecución, y vimos que en la segunda repetición ya muestra los valores correctos, por lo que elegimos trabajar con esos valores.
+
+  
+ 
+Ordenación por selección con inicialización descendente
+ 
+	    n		t(n)      t(n)/n^1.8    t(n)/n^2.0    t(n)/n^2.2
+	    
+(*)	   500         331.713    0.00459850    0.00132685    0.00038285
+	  1000        1395.000    0.00555360    0.00139500    0.00035041
+	  2000        5445.000    0.00622507    0.00136125    0.00029767
+	  4000       22449.000    0.00737037    0.00140306    0.00026709
+	  8000       85578.000    0.00806864    0.00133716    0.00022160
+	 16000      334702.000    0.00906239    0.00130743    0.00018862
+	 32000     1318323.000    0.01025067    0.00128742    0.00016169
+
+                                   n^1.8 es      n^2.0 es      n^2.2 es
+                                  subestimada    ajustada    sobreestimada
+
+(*) Tiempo promedio de 10000 ejecuciones del algoritmo. 
+n^1.8 es una cota ligeramente subestimada. 
+n^2 es una cota ajustada;   Cte = 0.00133
+n^2.2 es una cota ligeramente sobrestimada. 
+Como conclusión, t(n) = O(n^2). 
+ 
+
+
+Ordenación por selección con inicialización ascendente
+
+	    n		t(n)      t(n)/n^1.8    t(n)/n^2.0    t(n)/n^2.2
+	    
+(*)	   500         291.558    0.00404184    0.00116623    0.00033650
+	  1000        1200.000    0.00477729    0.00120000    0.00030143
+	  2000        4431.000    0.00506580    0.00110775    0.00024223
+	  4000       20013.000    0.00657059    0.00125081    0.00023811
+	  8000       75538.000    0.00712203    0.00118028    0.00019560
+	 16000      300196.000    0.00812810    0.00117264    0.00016918
+	 32000     1219860.000    0.00948506    0.00119127    0.00014962
+
+                                   n^1.8 es      n^2.0 es      n^2.2 es
+                                  subestimada    ajustada    sobreestimada
+ 
+(*) Tiempo promedio de 10000 ejecuciones del algoritmo. 
+n^1.8 es una cota ligeramente subestimada. 
+n^2 es una cota ajustada;   Cte = 0.00119
+n^2.2 es una cota ligeramente sobrestimada. 
+Como conclusión, t(n) = O(n^2). 
+
+ 
+
+ 
+ 
+En cuanto al algoritmo de ordenación shell, sí que hay que tener en cuenta los distintos casos de orden de los vectores, ya que no tiene una complejidad constante. Es el primer algoritmo de ordenación que baja de O(n^2) en el peor caso. 
+
+
+Ordenación por shell con inicialización aleatoria
+
+	    n		t(n)      t(n)/n^1.1    t(n)/n^1.2    t(n)/n^1.3
+(*)	   500          52.240    0.05612238    0.03014665    0.01619356
+(*)	  1000         125.995    0.06314708    0.03164850    0.01586184
+(*)	  2000         283.532    0.06629320    0.03100030    0.01449650
+	  4000         695.000    0.07580864    0.03307597    0.01443135
+	  8000        1537.000    0.07821225    0.03183946    0.01296155
+	 16000        3515.000    0.08344364    0.03169430    0.01203842
+	 32000        7926.000    0.08777867    0.03110813    0.01102451
+
+                                   n^1.1 es      n^1.2 es      n^1.3 es
+                                  subestimada    ajustada    sobreestimada
+
+(*) Tiempo promedio de 10000 ejecuciones del algoritmo. 
+n^1.1 es una cota ligeramente subestimada. 
+n^1.2 es una cota ajustada;  Cte = 0.0315
+n^1.3 es una cota ligeramente sobrestimada. 
+Como conclusión, t(n) = O(n^1.2). 
+
+ 
+Ordenación por shell con inicialización descendente
+
+	    n		t(n)      t(n)/n^0.9    t(n)/n^1.1    t(n)/n^1.3
+(*)	   500          22.458    0.08361768    0.02412704    0.00696162
+(*)	  1000          46.533    0.09284556    0.02332174    0.00585816
+(*)	  2000          99.448    0.10633326    0.02325214    0.00508460
+(*)	  4000         220.550    0.12637267    0.02405697    0.00457962
+	  8000         538.000    0.16519670    0.02737683    0.00453697
+	 16000        1135.000    0.18676177    0.02694411    0.00388723
+	 32000        2310.000    0.20369347    0.02558273    0.00321305
+
+                                   n^0.9 es      n^1.1 es      n^1.3 es
+                                  subestimada    ajustada    sobreestimada
+
+(*) Tiempo promedio de 10000 ejecuciones del algoritmo. 
+n^0.9 es una cota ligeramente subestimada. 
+n^1.1 es una cota ajustada;   Cte = 0.0266
+n^1.3 es una cota ligeramente sobrestimada. 
+Como conclusión, t(n) = O(n^1.1). 
+
+ 
+Ordenación por shell con inicialización ascendente
+
+	    n		t(n)      t(n)/n^0.9    t(n)/n^1.1    t(n)/n^1.2
+(*)	   500          13.257    0.04935968    0.01424224    0.00765035
+(*)	  1000          31.406    0.06266322    0.01574028    0.00788883
+(*)	  2000          68.455    0.07319447    0.01600561    0.00748461
+(*)	  4000         142.377    0.08158042    0.01553008    0.00677591
+(*)	  8000         309.424    0.09501083    0.01574544    0.00640982
+	 16000         724.000    0.11913262    0.01718725    0.00652821
+	 32000        1443.000    0.12724228    0.01598090    0.00566352
+
+                                   n^0.9 es      n^1.1 es      n^1.2 es
+                                  subestimada    ajustada    sobreestimada
+
+(*) Tiempo promedio de 10000 ejecuciones del algoritmo. 
+n^0.9 es una cota ligeramente subestimada. 
+n^1.1 es una cota ajustada;   Cte =  0.0161
+n^1.2 es una cota ligeramente sobrestimada. 
+Como conclusión, t(n) = O(n^1.1). 
+
+ 
+ 
+Repetimos las mediciones en todos los casos varias veces para elegir las mejores series.
+
+En conclusión, como podemos observar en las tablas, el algoritmo de ordenación shell es más rápido que el de selección. También podemos ver que aunque en el caso de ordenación por selección la complejidad es siempre n^2, en la situación en la que tenemos el vector ordenado ascendentemente se comporta mejor, mientras que si está inicializado descendentemente tiene un comportamiento peor. La ordenación shell, en el mejor caso presenta una complejidad O(n^1.1), en el caso medio O(n^1.1), y en el peor caso O(n^1.2). La situación más eficiente es la que utiliza el vector inicializado ascendentemente, y la menos eficiente la del vector aleatorio. 
+
+
+
+
