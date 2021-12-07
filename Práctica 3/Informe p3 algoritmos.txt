@@ -1,0 +1,311 @@
+Nombres: Patricia Mato Miragaya (patricia.mato.miragaya@udc.es) 
+	 Sara Qing Liébana Rodríguez (s.qing.liebana@udc.es) 
+         Lucía Docampo Rodríguez (lucia.docampo@udc.es) 
+	
+Grupo 3.1 
+
+----------------------------------------------------------------------------- 
+
+En esta práctica 3 estudiaremos el comportamiento de 2 algoritmos de ordenación, ordenación por inserción y ordenación rápida. Nuestro objetivo será verificar la complejidad empírica de ambos. Para ello estudiaremos los tiempos de ejecución de cada algoritmo en tres casos diferentes, primero utilizando vectores generados aleatoriamente, a continuación descendentemente y por último ascendentemente. La unidad de tiempo utilizada son microsegundos (µs). En la tabla de tiempos se realizaron 7 mediciones para distintos valores de n, desde n=500 hasta n=32000, siguiendo una progresión geométrica de razón 2. 
+
+ 
+Características del ordenador portátil en el que se hizo la medición: 
+- Sistema Operativo: Ubuntu 20.04.3 LTS (64 bits) 
+- CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz 
+- Memoria Ram: 32 GB 
+- Espacio disco duro: 47 GB 
+- Kernel: 5.11.0-36-generic 
+
+- Compilador: 9.3.0 
+ 
+
+Para calcular la complejidad de cada algoritmo medimos los tiempos de ejecución con los distintos vectores mencionados anteriormente. Para los tiempos que no superan el umbral de confianza (ti>=500 µs) repetimos la ejecución 1000 veces y determinamos la media de ellas, además, estos tiempos están marcados con un asterisco (*). 
+
+
+
+ORDENACIÓN POR INSERCIÓN
+Ordenación por inserción con inicialización aleatoria
+
+	    n		t(n)      t(n)/n^1.8    t(n)/n^2.0    t(n)/n^2.2
+(*)	   500         163.283    0.00226358    0.00069501    0.00018845
+	  1000         644.000    0.00256381    0.00069006    0.00016177
+	  2000        2459.000    0.00281128    0.00066330    0.00013443
+	  4000       11154.000    0.00366204    0.00075741    0.00013271
+	  8000       49326.000    0.00465065    0.00084319    0.00012773
+	 16000      176942.000    0.00479088    0.00076143    0.00009972
+	 32000      670574.000    0.00521407    0.00072644    0.00008225
+
+                                   n^1.8 es      n^2.0 es      n^2.2 es
+                                  subestimada    ajustada    sobreestimada
+                                 
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+n^1.8 es una cota ligeramente subestimada. 
+n^2.0 es una cota ajustada; Cte = 0.000772
+n^2.2 es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O(n^2). 
+  
+ 
+Ordenación por inserción con inicialización descendente
+ 
+	    n		t(n)      t(n)/n^1.8    t(n)/n^2.0    t(n)/n^2.2
+(*)	   500         355.862    0.00493328    0.00142345    0.00041072
+	  1000        1511.000    0.00601540    0.00151100    0.00037955
+	  2000        6265.000    0.00716254    0.00156625    0.00034250
+	  4000       26036.000    0.00854804    0.00162725    0.00030977
+	  8000       90978.000    0.00857777    0.00142153    0.00023558
+	 16000      361194.000    0.00977968    0.00141091    0.00020355
+	 32000     1366221.000    0.01062310    0.00133420    0.00016757
+
+                                   n^1.8 es      n^2.0 es      n^2.2 es
+                                  subestimada    ajustada    sobreestimada
+
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+n^1.8 es una cota ligeramente subestimada. 
+n^2.0 es una cota ajustada; Cte = 0.00145
+n^2.2 es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O(n^2). 
+ 
+
+Ordenación por inserción con inicialización ascendente
+
+	    n		t(n)      t(n)/n^0.8    t(n)/n^1.0    t(n)/n^1.2
+(*)	   500           1.717    0.01190130    0.00365418    0.00099085
+(*)	  1000           3.337    0.01328484    0.00357566    0.00083822
+(*)	  2000           7.145    0.01633722    0.00385463    0.00078121
+(*)	  4000          14.314    0.01879806    0.00388796    0.00068122
+(*)	  8000          28.151    0.02123351    0.00384977    0.00058316
+(*)	 16000          55.244    0.02393256    0.00380370    0.00049813
+(*)	 32000         101.851    0.02534226    0.00353075    0.00039975
+
+                                   n^0.8 es      n^1.0 es      n^1.2 es
+                                  subestimada    ajustada    sobreestimada
+
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+n^0.8 es una cota ligeramente subestimada. 
+n^1.0 es una cota ajustada; Cte = 0.00377
+n^1.2 es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O(n^1). 
+
+ 
+
+ORDENACIÓN RÁPIDA
+Ordenación rápida con inicialización aleatoria
+UMBRAL = 1
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.98*log(n))   (n^1.2*log(n))
+(*)	   500          40.152      0.04478343       0.01463197        0.00372846
+(*)	  1000          79.393      0.04575570       0.01319609        0.00288699
+(*)	  2000         171.283      0.05152584       0.01311715        0.00246384
+(*)	  4000         361.152      0.05718411       0.01285004        0.00207229
+	  8000         823.000      0.06907224       0.01370084        0.00189700
+	 16000        1574.000      0.07043977       0.01233321        0.00146612
+	 32000        3417.000      0.08195963       0.01266698        0.00129283
+
+                                  (n^0.8)*log(n)   (n^0.98)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.98)*log(n) es una cota ajustada; Cte = 0.0129
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.98)*log(n)). 
+
+ 
+Ordenación rápida con inicialización descendente
+UMBRAL = 1
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.96*log(n))   (n^1.2*log(n))
+(*)	   500          11.642      0.01298488       0.00480400        0.00108106
+(*)	  1000          27.442      0.01581535       0.00523696        0.00099788
+(*)	  2000          55.553      0.01671161       0.00495283        0.00079911
+(*)	  4000         117.296      0.01857242       0.00492651        0.00067305
+(*)	  8000         246.541      0.02069154       0.00491246        0.00056827
+	 16000         538.000      0.02407662       0.00511607        0.00050113
+	 32000        1113.000      0.02669625       0.00507722        0.00042110
+
+                                  (n^0.8)*log(n)   (n^0.96)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.96)*log(n) es una cota ajustada; Cte = 0.00501
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.96)*log(n)). 
+
+ 
+Ordenación rápida con inicialización ascendente
+UMBRAL = 1
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.97*log(n))   (n^1.2*log(n))
+(*)	   500          12.353      0.01377789       0.00479024        0.00114708
+(*)	  1000          28.581      0.01647178       0.00509026        0.00103930
+(*)	  2000          59.029      0.01775727       0.00487754        0.00084911
+(*)	  4000         122.104      0.01933371       0.00472025        0.00070063
+(*)	  8000         259.483      0.02177773       0.00472593        0.00059810
+	 16000         637.000      0.02850707       0.00549860        0.00059334
+	 32000        1314.000      0.03151740       0.00540350        0.00049715
+
+                                  (n^0.8)*log(n)   (n^0.97)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.97)*log(n) es una cota ajustada; Cte =  0.00509
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.97)*log(n)). 
+
+
+
+
+Ordenación rápida con inicialización aleatoria
+UMBRAL = 10
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.98*log(n))   (n^1.2*log(n))
+(*)	   500          34.922      0.03895017       0.01272608        0.00324281
+(*)	  1000          72.064      0.04153186       0.01197792        0.00262048
+(*)	  2000         155.995      0.04692686       0.01194637        0.00224393
+(*)	  4000         329.183      0.05212220       0.01171256        0.00188885
+	  8000         745.000      0.06252590       0.01240234        0.00171721
+	 16000        1584.000      0.07088729       0.01241157        0.00147544
+	 32000        3355.000      0.08047251       0.01243714        0.00126937
+
+                                  (n^0.8)*log(n)   (n^0.98)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+   
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.98)*log(n) es una cota ajustada; Cte = 0.0122 
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.98)*log(n)).
+   
+                                  
+Ordenación rápida con inicialización descendente
+UMBRAL = 10
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.96*log(n))   (n^1.2*log(n))
+(*)	   500           7.994      0.00891609       0.00329867        0.00074231
+(*)	  1000          20.396      0.01175460       0.00389232        0.00074167
+(*)	  2000          41.813      0.01257831       0.00372784        0.00060146
+(*)	  4000          90.257      0.01429112       0.00379085        0.00051790
+(*)	  8000         195.787      0.01643189       0.00390116        0.00045129
+(*)	 16000         412.459      0.01845840       0.00392225        0.00038419
+	 32000         839.000      0.02012412       0.00382731        0.00031744
+
+                                  (n^0.8)*log(n)   (n^0.96)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada                                     
+
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.96)*log(n) es una cota ajustada; Cte =  0.00386
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.96)*log(n)).
+
+
+Ordenación rápida con inicialización ascendente
+UMBRAL = 10
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.97*log(n))   (n^1.2*log(n))
+(*)	   500           7.673      0.00855806       0.00297544        0.00071250
+(*)	  1000          20.657      0.01190502       0.00367900        0.00075116
+(*)	  2000          43.108      0.01296787       0.00356200        0.00062009
+(*)	  4000          87.670      0.01388150       0.00338911        0.00050305
+(*)	  8000         191.872      0.01610332       0.00349454        0.00044226
+(*)	 16000         407.932      0.01825580       0.00352128        0.00037997
+	 32000         881.000      0.02113153       0.00362289        0.00033333
+
+                                  (n^0.8)*log(n)   (n^0.97)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.97)*log(n) es una cota ajustada; Cte =  0.00351
+(n^1.2)*log(n)es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.97)*log(n)).
+
+
+
+
+Ordenación rápida con inicialización aleatoria
+UMBRAL = 100
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.98*log(n))   (n^1.2*log(n))
+(*)	   500          41.296      0.04605939       0.01504886        0.00383469
+(*)	  1000          82.462      0.04752443       0.01370619        0.00299859
+(*)	  2000         178.627      0.05373508       0.01367957        0.00256948
+(*)	  4000         376.412      0.05960035       0.01339300        0.00215986
+	  8000         947.000      0.07947924       0.01576513        0.00218282
+	 16000        1792.000      0.08019572       0.01404137        0.00166918
+	 32000        3952.000      0.09479206       0.01465025        0.00149524
+
+                                  (n^0.8)*log(n)   (n^0.98)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+
+ (*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.98)*log(n) es una cota ajustada;   Cte = 0.0145
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.98)*log(n)).
+
+
+Ordenación rápida con inicialización descendente
+UMBRAL = 100
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.96*log(n))   (n^1.2*log(n))
+(*)	   500           7.216      0.00804835       0.00297764        0.00067007
+(*)	  1000          15.045      0.00867072       0.00287115        0.00054709
+(*)	  2000          30.433      0.00915494       0.00271326        0.00043777
+(*)	  4000          67.586      0.01070144       0.00283865        0.00038781
+(*)	  8000         144.679      0.01214253       0.00288280        0.00033348
+(*)	 16000         318.149      0.01423783       0.00302541        0.00029634
+	 32000         716.000      0.01717386       0.00326621        0.00027090
+
+                                  (n^0.8)*log(n)   (n^0.96)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+
+ (*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.96)*log(n) es una cota ajustada; Cte = 0.003
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.96)*log(n)).
+
+        
+Ordenación rápida con inicialización ascendente
+UMBRAL = 100
+	    n		t(n)           t(n)/            t(n)/             t(n)/
+			           (n^0.8*log(n))   (n^0.99*log(n))   (n^1.2*log(n))
+(*)	   500           5.271      0.00587900       0.00180509        0.00048946
+(*)	  1000          13.665      0.00787540       0.00211969        0.00049690
+(*)	  2000          29.983      0.00901957       0.00212809        0.00043129
+(*)	  4000          69.245      0.01096412       0.00226768        0.00039733
+(*)	  8000         151.068      0.01267874       0.00229874        0.00034821
+(*)	 16000         326.359      0.01460524       0.00232127        0.00030399
+	 32000         719.000      0.01724582       0.00240273        0.00027203
+
+                                  (n^0.8)*log(n)   (n^0.99)*log(n)    (n^1.2)*log(n)
+                                  es subestimada     es ajustada     es sobreestimada
+
+ (*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+(n^0.8)*log(n) es una cota ligeramente subestimada. 
+(n^0.99)*log(n) es una cota ajustada; Cte = 0.00232
+(n^1.2)*log(n) es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O((n^0.99)*log(n)).
+
+
+
+Repetimos las mediciones en todos los casos varias veces para elegir las mejores series.
+
+
+
+
+Para el algoritmo de ordenación rápida, probamos con 3 umbrales diferentes (1, 10 y 100), y observamos comportamientos distintos en cada uno de ellos. Cuando el vector está ordenado descentente o ascendentemente, se obtienen mejores tiempos con umbral 100, ya que cuando hacemos la llamada al algoritmo de ordenación por inserción, ya está ordenado el vector, por lo tanto es muy eficiente. Mientras que cuando el vector está inicializado aleatoriamente se obtienen mejores tiempos con umbral 10, ya que la ordenación por inserción en un caso distinto al mejor caso (en el que el vector ya está ordenado) funciona mejor con vectores de poco tamaño.
+
+
+
+En conlusión, la ordenación por inserción requiere O(n^2) operaciones para ordenar una lista de n elementos, podemos observar que el mejor caso es en el que el vector ya está ordenado, es decir, inicializado ascendentemente, y tiene una complejidad de O(n). Mientras que en el peor caso y en el caso medio, vemos una complejidad O(n^2).
+
+ 
+En cuanto al quicksort, es un algoritmo de ordenación que consiste en elegir un elemento (pivote) del conjunto a ordenar, y a partir de él recolocar todos los elementos, a un lado los menores y a otro lado los mayores. Por lo tanto, el mejor caso sería en el que el pivote termina en el medio de la lista de números, dividiéndola en dos partes iguales, con un tamaño proporcional. Es decir, el mejor caso es en el que el pivote siempre coincide con la mediana. La complejidad en el mejor caso sería O(n*log n). El peor caso sería cuando el pivote termina en un extremo de la lista, ya que al separarla en dos una lista solo tendría un elemento (el pivote), y la otra tendría todos los demas. En este caso la complejidad es de O(n^2). En el caso medio presenta una complejidad de O(n*log n). En nuestra implementación trabajamos usando la mediana, para que a la hora de dividir los vectores queden equilibrados.
+
+Como conclusión final, comparando los resultados de los dos algoritmos, vemos que quicksort es más rápido que ordenación por inserción en la mayor parte de los casos.
+
+
