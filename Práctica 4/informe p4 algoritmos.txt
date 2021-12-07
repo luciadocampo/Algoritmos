@@ -1,0 +1,57 @@
+Nombres: Patricia Mato Miragaya (patricia.mato.miragaya@udc.es) 
+	 Sara Qing Liébana Rodríguez (s.qing.liebana@udc.es) 
+         Lucía Docampo Rodríguez (lucia.docampo@udc.es) 
+	
+Grupo 3.1 
+
+----------------------------------------------------------------------------- 
+
+En esta práctica 4 estudiaremos el comportamiento del algoritmo de Prim, utilizado para buscar un árbol de recubrimiento mínimo en un grafo conexo. Nuestro objetivo será verificar su complejidad empírica. Para ello estudiaremos los tiempos de ejecución. La unidad de tiempo utilizada son microsegundos (µs). En la tabla de tiempos se realizaron 7 mediciones para distintos valores de n, desde n=10 hasta n=640, siguiendo una progresión geométrica de razón 2. 
+
+ 
+Características del ordenador portátil en el que se hizo la medición: 
+- Sistema Operativo: Ubuntu 20.04.3 LTS (64 bits) 
+- CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz 
+- Memoria Ram: 32 GB 
+- Espacio disco duro: 47 GB 
+- Kernel: 5.11.0-36-generic 
+ 
+ 
+
+Para calcular la complejidad del algoritmo medimos los tiempos de ejecución. Para los tiempos que no superan el umbral de confianza (ti>=500 µs) repetimos la ejecución 1000 veces y determinamos la media de ellas, además, estos tiempos están marcados con un asterisco (*). 
+
+
+
+
+ALGORITMO DE PRIM
+	     n		     t(n)     t(n)/n^1.5    t(n)/n^2.06   t(n)/n^2.2
+(*)	    10           0.484    0.01530542     0.00421546     0.00305383
+(*)	    20           1.697    0.01897304     0.00354454     0.00233032
+(*)	    40           7.791    0.03079663     0.00390256     0.00232842
+(*)	    80          33.300    0.04653816     0.00400017     0.00216594
+(*)	   160         134.265    0.06634113     0.00386790     0.00190064
+	   320         582.000    0.10167122     0.00402081     0.00179305
+	   640        2208.000    0.13637322     0.00365821     0.00148048
+
+                               n^1.5 es       n^2.06 es      n^2.2 es
+                             subestimada      ajustada     sobreestimada
+                 
+(*) Tiempo promedio de 1000 ejecuciones del algoritmo. 
+n^1.5 es una cota ligeramente subestimada. 
+n^2.06 es una cota ajustada; Cte = 0.0039
+n^2.2 es una cota ligeramente sobreestimada. 
+Como conclusión, t(n) = O(n^2.06). 
+
+
+
+Repetimos las mediciones en todos los casos varias veces para elegir las mejores series.
+
+
+En conclusión, tras haber medido los tiempos de ejecución, podemos concluír que la complejidad del algoritmo de Prim es aproximadamente O(n^2.06). A pesar de que la cota ajustada teórica es n^2, en nuestro caso comprobamos que no era lo suficientemente constante, por eso decidimos que la cota ajustada más adecuada es n^2.06. 
+
+
+
+
+
+
+
