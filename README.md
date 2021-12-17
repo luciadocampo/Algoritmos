@@ -1,5 +1,6 @@
 # Algoritmos
 NOTAS:
+
 p1: 7;
 
 p2: 10;
